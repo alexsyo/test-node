@@ -1,3 +1,5 @@
+'use strict'
+
 var request = require('supertest');
 var app = require('../app');
 
@@ -10,3 +12,6 @@ describe('Root path: ', function() {
             .end(done);
     });
 });
+
+require('./app')();
+// require('./command')();
