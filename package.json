@@ -1,0 +1,27 @@
+{
+  "name": "test-node",
+  "version": "1.0.0",
+  "description": "| Action | Command |\r |---------------------|---------------------|\r | run application | node app |\r | run commands | node command xxx |",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha tests/test.js -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexsyo/test-node.git"
+  },
+  "author": "Alessandro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexsyo/test-node/issues"
+  },
+  "homepage": "https://github.com/alexsyo/test-node#readme",
+  "devDependencies": {
+    "mocha": "^2.3.2",
+    "supertest": "^1.1.0"
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "socket.io": "^1.3.6"
+  }
+}
