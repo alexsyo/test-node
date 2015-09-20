@@ -1,12 +1,21 @@
 'use strict';
 
+// Initialize server with express
 var app = require('express')();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 io.on('connection', function(){ /* … */ });
-server.listen(3000);
 
-// Routes
+// Environment
+var env = require('./config/environment');
+
+// Modules
 require('./routes')(app);
 
-module.exports = app;
+// Listen for connections
+server.listen(env.port, function() { // app or server
+    console.log('listening on port ' + env.port);
+});
+
+// Expose server
+module.exports = server;
