@@ -21,7 +21,7 @@ module.exports = function() {
                     .end(done);
             });
 
-            it('Contain "github"', function(done) {
+            it('Contains "github"', function(done) {
                 request(app).get('/api/pipe')
                     .expect(/github/i)
                     .end(done);
@@ -43,7 +43,7 @@ module.exports = function() {
                     .end(done);
             });
 
-            it('Contain "Hello string"', function(done) {
+            it('Contains "Hello string"', function(done) {
                 request(app).get('/api/send')
                     .expect('Hello string')
                     .end(done);
@@ -64,7 +64,7 @@ module.exports = function() {
                     .end(done);
             });
             
-            it('Contain a JSON', function(done) {
+            it('Contains a JSON', function(done) {
                 request(app).get('/api/json')
                     .expect(JSON.stringify(['Hello', 'json']))
                     .end(done);
@@ -86,7 +86,7 @@ module.exports = function() {
                     .end(done);
             });
 
-            it('Contain "Hello error"', function(done) {
+            it('Contains "Hello error"', function(done) {
                 request(app).get('/api/error')
                     .expect(JSON.stringify('Hello error'))
                     .end(done);
@@ -108,7 +108,7 @@ module.exports = function() {
                     .end(done);
             });
 
-            it('Contain "Moved permanently"', function(done) {
+            it('Contains "Moved permanently"', function(done) {
                 request(app).get('/api/redirect')
                     .expect(/moved permanently/i)
                     .end(done);
