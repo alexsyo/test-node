@@ -2,6 +2,11 @@
   "name": "test-node",
   "version": "1.0.0",
   "dependencies": {
+    "ejs": {
+      "version": "2.3.4",
+      "from": "ejs@*",
+      "resolved": "https://registry.npmjs.org/ejs/-/ejs-2.3.4.tgz"
+    },
     "express": {
       "version": "4.13.3",
       "from": "https://registry.npmjs.org/express/-/express-4.13.3.tgz",
