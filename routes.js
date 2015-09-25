@@ -13,10 +13,12 @@ module.exports = function(app) {
     app.use('/middleware', middleware);
 
     // REST
+    app.use('/crud', rest('./crud'));
     app.use('/template', rest('./template'));
+    
 
     // Default
     app.get('/', function(req, res) {
-        res.sendFile(__dirname + '/index.html');
+        res.sendFile(__dirname + '/index.html'); // current directory
     });
 };
