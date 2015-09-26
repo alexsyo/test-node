@@ -10,6 +10,7 @@ io.on('connection', function(){ /* … */ });
 var env = require('./config/environment');
 
 // Modules
+require('./config/middlewares')(app);
 require('./routes')(app);
 
 // Listen for connections

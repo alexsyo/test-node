@@ -1,5 +1,65 @@
 <% include wrap/header %>
 
 <p>Hello CRUD</p>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Attack</th>
+        <th>Defence</th>
+        <th>Range</th>
+        <th>Life</th>
+        <th>Delete</th>
+    </tr>
+</table>
+
+<button id="formOpener">Create Unit</button>
+
+<form>
+    <input type="text" name="name" placeholder="Name">
+    <input type="number" name="attack" placeholder="Attack">
+    <input type="number" name="defense" placeholder="Defense">
+    <input type="number" name="range" placeholder="Range">
+    <input type="number" name="life" placeholder="Life">
+    <input type="submit">
+</form>
 
 <% include wrap/footer %>
+
+<script>
+
+    $('form').dialog({autoOpen: false});
+
+    $('#formOpener').click(function() {
+        $('form').dialog('open');
+    });
+
+    $('form').submit(function(event) {
+        event.preventDefault();
+
+        $.post('/crud', $('form').serialize()).done(function(data) {
+            create(data);
+        });
+    });
+
+function create(data) {
+    var tr = document.createElement('tr');
+    
+    var name = document.createElement('td');
+    var attack = document.createElement('td');
+    var defense = document.createElement('td');
+    var range = document.createElement('td');
+    var life = document.createElement('td');
+    var del = document.createElement('td');
+    
+    $(name).html(data.name);
+    $(attack).html(data.attack);
+    $(defense).html(data.defense);
+    $(range).html(data.range);
+    $(life).html(data.life);
+    $(del).html('X');
+    
+    $(tr).append(name, attack, defense, range, life, del)
+        .appendTo($('table'));
+}
+
+</script>
