@@ -1,7 +1,7 @@
 {
   "name": "test-node",
   "version": "1.0.0",
-  "description": "| Action | Command |\r |---------------------|---------------------|\r | run application | node app |\r | run commands | node command xxx |",
+  "description": "testing node...",
   "main": "app.js",
   "scripts": {
     "test": "mocha tests/test.js -w",
