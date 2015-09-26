@@ -4,7 +4,8 @@
   "description": "| Action | Command |\r |---------------------|---------------------|\r | run application | node app |\r | run commands | node command xxx |",
   "main": "app.js",
   "scripts": {
-    "test": "mocha tests/test.js -w"
+    "test": "mocha tests/test.js -w",
+    "postinstall": "bower install"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   },
   "dependencies": {
     "body-parser": "^1.14.0",
+    "bower": "^1.5.3",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "request": "^2.62.0",
