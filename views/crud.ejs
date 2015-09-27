@@ -41,6 +41,12 @@
         });
     });
 
+    $.get('/crud').done(function(data) {
+        for(var i=0;i<data.length;i++) {
+            create(data[i]);
+        }
+    });
+
 function create(data) {
     var tr = document.createElement('tr');
     

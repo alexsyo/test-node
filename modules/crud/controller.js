@@ -1,8 +1,16 @@
 'use strict';
 
+var unit = require('./model');
+
 module.exports.index = function(req, res) {
 
-    res.render('crud.ejs');
+    unit.find(function(err, obj) {
+        
+        if(err) throw err;
+
+        res.json(obj);
+
+    });
 
 };
 
@@ -12,9 +20,21 @@ module.exports.show = function(req, res) {
 
 module.exports.create = function(req, res) {
 
-    var data = req.body;
+    var newUnit = new unit(req.body);
 
-    res.status(201).json(data);
+    newUnit.save(function(err, obj) {
+        
+        if(err) {
+
+            res.status(400).json(err);
+        
+        } else {
+
+            res.status(201).json(obj);
+
+        }
+
+    });
 
 };
 
