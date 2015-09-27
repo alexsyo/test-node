@@ -7,7 +7,12 @@ var io = require('socket.io')(server);
 io.on('connection', function(){ /* … */ });
 
 // Environment
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var env = require('./config/environment');
+
+// Addons
+require('./config/mongoose')();
+require('./config/socket')(server);
 
 // Modules
 require('./config/middlewares')(app);
