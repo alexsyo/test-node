@@ -57,7 +57,7 @@ function create(data) {
     var life = document.createElement('td');
     var del = document.createElement('td');
     
-    $(name).html(data.name);
+    $(name).html('<a href="/crud_template/' + data.name + '">' + data.name + '</a>');
     $(attack).html(data.attack);
     $(defense).html(data.defense);
     $(range).html(data.range);

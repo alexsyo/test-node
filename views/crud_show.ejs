@@ -1,0 +1,45 @@
+<% include wrap/header %>
+
+<p>Hello <%= unit %></p>
+
+<table></table>
+
+<% include wrap/footer %>
+
+<script>
+
+    var param = $('p').html().match(/[^(hello )].*/i)[0];
+
+    $.get('/crud/' + param).done(function(data) {
+    
+        if(!data) {
+        
+            $('table').replaceWith('<p>Unit not found</p>');
+
+        } else {
+            
+            delete data._id;
+            delete data.name;
+            delete data.__v;
+
+            for(i in data) {
+
+                if(data.hasOwnProperty(i)) {
+
+                    var tr = document.createElement('tr');
+                    var td_0 = document.createElement('td');
+                    var td_1 = document.createElement('td');
+
+                    $(td_0).html(i);
+                    $(td_1).html(data[i]);
+                    $(tr).append(td_0, td_1).appendTo('table');
+
+                }
+
+            }
+
+        }
+
+    });
+
+</script>

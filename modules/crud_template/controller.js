@@ -8,6 +8,9 @@ module.exports.index = function(req, res) {
 
 module.exports.show = function(req, res) {
 
+    res.locals = {unit: req.params.id};
+    res.render('crud_show.ejs');
+
 };
 
 module.exports.create = function(req, res) {
