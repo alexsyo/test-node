@@ -142,6 +142,16 @@ module.exports = function() {
 
         });
 
+        describe('destroy:', function() {
+
+            it('Return 204', function(done) {
+                request(app)
+                    .delete('/crud/init')
+                    .expect(204, done);
+            });
+
+        });
+
     });
 
 }; 

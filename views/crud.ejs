@@ -62,9 +62,18 @@ function create(data) {
     $(defense).html(data.defense);
     $(range).html(data.range);
     $(life).html(data.life);
-    $(del).html('X');
+    $(del).html('X').click(function() {
+        $.ajax({
+            url: '/crud/' + data.name,
+            type: 'DELETE'
+        }).done(function() {
+
+            $('#' + data.name).remove();
+
+        });
+    });
     
-    $(tr).append(name, attack, defense, range, life, del)
+    $(tr).attr('id', data.name).append(name, attack, defense, range, life, del)
         .appendTo($('table'));
 }
 

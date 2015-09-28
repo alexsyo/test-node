@@ -52,4 +52,12 @@ module.exports.update = function(req, res) {
 
 module.exports.destroy = function(req, res) {
 
+    units.remove({name: req.params.id}, function(err) {
+
+        if(err) throw err;
+
+        res.sendStatus(204);
+
+    });
+
 };
