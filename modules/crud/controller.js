@@ -1,10 +1,10 @@
 'use strict';
 
-var unit = require('./model');
+var units = require('./model');
 
 module.exports.index = function(req, res) {
 
-    unit.find(function(err, obj) {
+    units.find(function(err, obj) {
         
         if(err) throw err;
 
@@ -16,13 +16,21 @@ module.exports.index = function(req, res) {
 
 module.exports.show = function(req, res) {
 
+    units.findOne({'name': req.params.id}, function(err, obj) {
+
+        if(err) throw err;
+
+        res.json(obj);
+
+    });
+
 };
 
 module.exports.create = function(req, res) {
 
-    var newUnit = new unit(req.body);
+    var unit = new units(req.body);
 
-    newUnit.save(function(err, obj) {
+    unit.save(function(err, obj) {
         
         if(err) {
 
