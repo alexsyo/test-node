@@ -5,14 +5,14 @@
 | run application | node app |
 | run commands | node command xxx |
 
-# Global Var
+## Global Var
 
 | JavaScript | Node |
 |---------------------|---------------------|
 | window | global |
 | document | process |
 
-# Packages
+## Packages
 
 Dependency manager - npm
 
@@ -24,12 +24,8 @@ Dependency manager - npm
 | Resolve the dependencies for browser view | browserify main.js -o dist/boundle.js |
 | Create .gitignore | node_modules, dist |
 
-# Template Engines
+## Template Engines
 
 Handlebars<br />
 EmbeddedJavaScript<br />
 Jade<br />
-
-# NodeSchool
-
-<a href="tutorials">Tutorials</a><br />
