@@ -140,6 +140,15 @@ module.exports = function() {
 
             });
 
+            it('Return 400 when name is null', function(done) {
+                request(app)
+                    .post('/crud')
+                    .send('name=')
+                    .expect(400)
+                    .expect('Content-type', /json/)
+                    .expect(JSON.stringify('name not specified'), done);
+            });
+
         });
 
         describe('destroy:', function() {

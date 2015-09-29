@@ -28,12 +28,20 @@ module.exports.show = function(req, res) {
 
 module.exports.create = function(req, res) {
 
+    if(!req.body.name) {
+    
+        res.status(400).json('name not specified');
+
+        return;
+
+    }
+
     var unit = new units(req.body);
 
     unit.save(function(err, obj) {
         
         if(err) {
-
+            
             res.status(400).json(err);
         
         } else {
