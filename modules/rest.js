@@ -5,7 +5,7 @@ var express = require('express');
 module.exports = function(path) {
 
     var router = express.Router();
-    var controller = require(path + '/controller');
+    var controller = require('./' + path + '/controller');
 
     router.route('/')
         .get(controller.index)

@@ -13,9 +13,10 @@ module.exports = function(app) {
     app.use('/middleware', middleware);
 
     // REST
-    app.use('/crud', rest('./crud'));
-    app.use('/crud_template', rest('./crud_template'));
-    app.use('/template', rest('./template'));
+    app.use('/crud', rest('crud'));
+    app.use('/crud_template', rest('crud_template'));
+    app.use('/socket', rest('socket'));
+    app.use('/template', rest('template'));
     
 
     // Default
