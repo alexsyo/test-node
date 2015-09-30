@@ -91,9 +91,47 @@ module.exports = function() {
 
                 });
 
+            });
+
+            it('Send a message', function(done) {
+
+                var client = io.connect(socketURL, options);
+
+                client.emit('set username', 'Mario');
+                client.emit('send message', 'Hello message');
+
+                client.on('send message', function(msg) {
+
+                    expect(msg).to.equal('Mario: Hello message');
+
+                    client.disconnect();
+
+                    done();
+
+                });
 
             });
 
+            it('Broadcast a message', function(done) {
+
+                var client_1 = io.connect(socketURL, options);
+                var client_2 = io.connect(socketURL, options);
+
+                client_1.emit('set username', 'Mario');
+                client_1.emit('send message', 'Hello message');
+
+                client_2.on('send message', function(msg) {
+
+                    expect(msg).to.equal('Mario: Hello message');
+
+                    client_1.disconnect();
+                    client_2.disconnect();
+
+                    done();
+
+                });
+
+            });
         });
 
     });
