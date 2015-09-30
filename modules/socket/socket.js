@@ -4,6 +4,8 @@ var stored = [];
 
 module.exports = function(socket) {
 
+    socket.emit('get messages', stored);
+
     socket.on('set username', function(username) {
 
         socket.username = username;
@@ -21,12 +23,6 @@ module.exports = function(socket) {
 
         socket.emit('send message', message);
         socket.broadcast.emit('send message', message);
-
-    });
-
-    socket.on('get messages', function(msg) {
-
-        socket.emit('get messages', stored);
 
     });
 

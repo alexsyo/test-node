@@ -2,4 +2,85 @@
 
 <p>Hello socket</p>
 
+<form id="post">
+
+    <input placeholder="message">
+
+    <input type="submit">
+
+</form>
+
+<div id="messages"></div>
+
+<form id="username">
+
+    <input placeholder="username">
+
+    <input type="submit">
+
+</form>
+
 <% include wrap/footer %>
+
+<script>
+
+    $('#username').dialog();
+
+    var socket = io.connect('http://localhost:3000');
+
+    socket.on('client connected', function(msg) {
+
+        post(msg);
+
+    });
+
+    socket.on('set username', function(msg) {
+
+        post(msg);
+
+    });
+
+    socket.on('send message', function(msg) {
+
+        post(msg);
+
+    });
+
+    socket.on('get messages', function(arr) {
+
+        for(var i=0;i<arr.length;i++) {
+
+            post(arr[i]);
+
+        }
+
+    });
+
+    function post(msg) {
+
+        var p = document.createElement('p');
+
+        $(p).html(msg).appendTo('#messages');
+
+    }
+
+    $('#username').submit(function(event) {
+
+        event.preventDefault();
+
+        socket.emit('set username', $('#username input').val());
+
+        $(this).dialog('close');
+
+    });
+
+    $('#post').submit(function(event) {
+
+        event.preventDefault();
+
+        socket.emit('send message', $('#post input').val());
+
+    });
+
+
+</script>
