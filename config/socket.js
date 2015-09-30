@@ -6,8 +6,12 @@ module.exports = function(server) {
     var io = require('socket.io')(server);
 
     // Listen for client's socket connection
-    io.on('connection', function() {
-    
+    io.on('connection', function(socket) {
+
+        socket.emit('client connected', 'client connected');
+
+        require('../modules/socket/socket')(socket);
+
     });
 
 };
