@@ -132,6 +132,36 @@ module.exports = function() {
                 });
 
             });
+
+            it('Get stored messages', function(done) {
+
+                var client_1 = io.connect(socketURL, options);
+
+                client_1.emit('set username', 'Mario');
+                client_1.emit('send message', 'Hello stored');
+
+                var client_2 = io.connect(socketURL, options);
+
+                client_2.emit('set username', 'Alexs');
+                client_2.emit('send message', 'Hello again');
+
+                client_2.emit('get messages');
+
+                client_2.on('get messages', function(stored) {
+
+                    expect(stored).to.have.length.above(2)
+                        .and.include('Mario: Hello stored')
+                        .and.include('Alexs: Hello again');
+
+                    client_1.disconnect();
+                    client_2.disconnect();
+
+                    done();
+
+                });
+
+            });
+
         });
 
     });

@@ -1,5 +1,7 @@
 'use strict';
 
+var stored = [];
+
 module.exports = function(socket) {
 
     socket.on('set username', function(username) {
@@ -13,8 +15,18 @@ module.exports = function(socket) {
 
     socket.on('send message', function(msg) {
 
-        socket.emit('send message', socket.username + ': ' + msg);
-        socket.broadcast.emit('send message', socket.username + ': ' + msg);
+        var message = socket.username + ': ' + msg;
+
+        stored.push(message);
+
+        socket.emit('send message', message);
+        socket.broadcast.emit('send message', message);
+
+    });
+
+    socket.on('get messages', function(msg) {
+
+        socket.emit('get messages', stored);
 
     });
 
