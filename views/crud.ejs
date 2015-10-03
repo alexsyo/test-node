@@ -36,15 +36,23 @@
     $('form').submit(function(event) {
         event.preventDefault();
 
-        $.post('/crud', $('form').serialize()).done(function(data) {
-            create(data);
-        });
+        $.post('/crud', $('form').serialize());
     });
 
     $.get('/crud').done(function(data) {
         for(var i=0;i<data.length;i++) {
             create(data[i]);
         }
+    });
+
+    var socket = io.connect('');
+
+    socket.on('create unit', function(data) {
+        create(data);
+    });
+
+    socket.on('delete unit', function(data) {
+        $('#' + data).remove();
     });
 
 function create(data) {
@@ -66,10 +74,6 @@ function create(data) {
         $.ajax({
             url: '/crud/' + data.name,
             type: 'DELETE'
-        }).done(function() {
-
-            $('#' + data.name).remove();
-
         });
     });
     

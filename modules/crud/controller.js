@@ -29,7 +29,7 @@ module.exports.show = function(req, res) {
 module.exports.create = function(req, res) {
 
     if(!req.body.name) {
-    
+
         res.status(400).json('name not specified');
 
         return;
@@ -39,11 +39,11 @@ module.exports.create = function(req, res) {
     var unit = new units(req.body);
 
     unit.save(function(err, obj) {
-        
+
         if(err) {
-            
+
             res.status(400).json(err);
-        
+
         } else {
 
             res.status(201).json(obj);
@@ -60,11 +60,18 @@ module.exports.update = function(req, res) {
 
 module.exports.destroy = function(req, res) {
 
-    units.remove({name: req.params.id}, function(err) {
+    // find then remove to make mongoose middlewares work
+    units.find({name: req.params.id}, function(err, unit) {
 
         if(err) throw err;
 
-        res.sendStatus(204);
+        unit[0].remove(function(err) {
+
+            if(err) throw err;
+
+            res.sendStatus(204);
+
+        });
 
     });
 

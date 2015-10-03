@@ -10,6 +10,7 @@ module.exports = function(server) {
 
         socket.emit('client connected', 'client connected');
 
+        require('../modules/crud/socket')(socket);
         require('../modules/socket/socket')(socket);
 
     });

@@ -5,13 +5,22 @@ var request = require('supertest');
 var app = require('../../app');
 var mongoose = require('mongoose');
 var units = require('../../modules/crud/model');
+var io = require('socket.io-client');
+
+var socketURL = 'http://localhost:3000';
+var options = {
+    transports: ['websocket'],
+    'force new connection': true
+};
+
+var client = io.connect(socketURL, options);
 
 module.exports = function() {
 
     describe('crud:', function(){
 
         before(function(done) {
-      
+
             mongoose.connection.db.dropDatabase();
 
             var unit = new units({
@@ -30,7 +39,9 @@ module.exports = function() {
 
 
         after(function(done) {
-        
+
+            client.disconnect();
+
             mongoose.connection.db.dropDatabase();
             mongoose.disconnect();
         
@@ -149,6 +160,27 @@ module.exports = function() {
                     .expect(JSON.stringify('name not specified'), done);
             });
 
+            it('Emits the created unit', function(done) {
+                client.on('create unit', function(unit) {
+
+                    expect(unit).to.have.property('name').and.equal('emit');
+                    expect(unit).to.have.property('attack').and.equal(1);
+                    expect(unit).to.have.property('defense').and.equal(1);
+                    expect(unit).to.have.property('range').and.equal(1);
+                    expect(unit).to.have.property('life').and.equal(1);
+
+                    done();
+
+                });
+
+                request(app)
+                    .post('/crud')
+                    .send('name=emit&attack=1&defense=1&range=1&life=1')
+                    .end(function(err, res) {
+                        if(err) throw err;
+                    });
+            });
+
         });
 
         describe('destroy:', function() {
@@ -157,6 +189,22 @@ module.exports = function() {
                 request(app)
                     .delete('/crud/init')
                     .expect(204, done);
+            });
+
+            it('Emits the deleted unit', function(done) {
+                client.on('delete unit', function(unit) {
+
+                    expect(unit).to.equal('emit');
+
+                    done();
+
+                });
+
+                request(app)
+                    .delete('/crud/emit')
+                    .end(function(err, res) {
+                        if(err) throw err;
+                    });
             });
 
         });
