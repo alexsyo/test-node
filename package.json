@@ -4,7 +4,7 @@
   "description": "testing node...",
   "main": "app.js",
   "scripts": {
-    "test": "set NODE_ENV=test&&mocha tests/test.js",
+    "test": "set NODE_ENV=test&&mocha tests/app.js",
     "postinstall": "bower install"
   },
   "repository": {
