@@ -14,6 +14,7 @@ require('./config/listeners')(server);
 switch(arg) {
     case 'emit': require('./commands/emit')(server); break;
     case 'read': require('./commands/read')(server); break;
+    case 'write' : require('./commands/write')(server); break;
     default: console.log('Command not found'); break;
 }
 
