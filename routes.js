@@ -15,6 +15,7 @@ module.exports = function(app) {
     // REST
     app.use('/crud', rest('crud'));
     app.use('/crud_template', rest('crud_template'));
+    app.use('/login', rest('login'));
     app.use('/socket', rest('socket'));
     app.use('/template', rest('template'));
     
