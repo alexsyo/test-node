@@ -1,7 +1,13 @@
 'use strict';
 
-module.exports.index = function(req, res) {
+class Controller {
     
-    res.json(req.data);
+    index(req, res) {
+        
+        res.json(req.data);
 
-};
+    }
+
+}
+
+module.exports = Controller;

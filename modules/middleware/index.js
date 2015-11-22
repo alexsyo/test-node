@@ -1,9 +1,11 @@
 'use strict';
 
-var express = require('express');
-var router = express.Router();
-var controller = require('./controller');
-var model = require('./model');
+let express = require('express');
+let router = express.Router();
+let Controller = require('./controller');
+let model = require('./model');
+
+let controller = new Controller();
 
 router.use(model.one);
 router.use(model.two);

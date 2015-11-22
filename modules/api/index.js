@@ -1,8 +1,9 @@
 'use strict';
 
-var express = require('express');
-var router = express.Router();
-var controller = require('./controller');
+let express = require('express');
+let router = express.Router();
+let Controller = require('./controller');
+let controller = new Controller();
 
 router.get('/pipe', controller.pipe);
 router.get('/send', controller.send);

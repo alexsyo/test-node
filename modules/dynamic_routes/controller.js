@@ -1,21 +1,26 @@
 'use strict';
 
-module.exports.query = function(req, res) {
+class Controller {
+
+    query(req, res) {
+
+        let id = req.query.id;
     
-    var id = req.query.id;
-    
-    res.send('Hello ' + id);
+        res.send('Hello ' + id);
+    }
 
-};
+    params(req, res) {
 
-module.exports.params = function(req, res) {
-    
-    var originalId = req.params.id;
-    var modifiedId = req.id;
+        let originalId = req.params.id;
+        let modifiedId = req.id;
 
-    res.send(
-        'Hello original ' + originalId + '<br>' +
-        'Hello modified ' + modifiedId
-    );
+        res.send(
+            'Hello original ' + originalId + '<br>' +
+            'Hello modified ' + modifiedId
+        );
 
-};
+    }
+
+}
+
+module.exports = Controller;

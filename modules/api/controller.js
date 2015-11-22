@@ -1,41 +1,47 @@
 'use strict';
 
-var request = require('request');
+let request = require('request');
 
-module.exports.pipe = function(req, res) {
+class Controller {
 
-    request('http://github.com/alexsyo').pipe(res);
+    pipe(req, res) {
 
-};
+        request('http://github.com/alexsyo').pipe(res);
 
-module.exports.send = function(req, res) {
+    }
 
-    var string = 'Hello string';
-    
-    res.send(string);
+    send(req, res) {
 
-};
+        let string = 'Hello string';
 
-module.exports.json = function(req, res) {
+        res.send(string);
 
-    var json = ['Hello', 'json'];
+    }
 
-    res.json(json);
+    json(req, res) {
 
-};
+        let json = ['Hello', 'json'];
 
-module.exports.error = function(req, res) {
+        res.json(json);
 
-    var error = 'Hello error';
+    }
 
-    res.status(500).json(error);
+    error(req, res) {
 
-};
+        let error = 'Hello error';
 
-module.exports.redirect = function(req, res) {
+        res.status(500).json(error);
 
-    // 302 - moved temporarily
-    // 301 - moved permanently
-    res.redirect(301, '/api/send');
+    }
 
-};
+    redirect(req, res) {
+
+        // 302 - moved temporarily
+        // 301 - moved permanently
+        res.redirect(301, '/api/send');
+
+    }
+
+}
+
+module.exports = Controller;
