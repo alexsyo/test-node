@@ -1,27 +1,33 @@
 'use strict';
 
-module.exports.index = function(req, res) {
+class Controller {
 
-    res.locals = { varTest: 'Hello variable' }; // pass a variable
-    res.render('template.ejs'); // template in \views
+    index(req, res) {
 
-};
+        res.locals = { varTest: 'Hello variable' }; // pass a variable
+        res.render('template.ejs'); // template in \views
 
-module.exports.show = function(req, res) {
+    }
 
-    res.locals = { varTest: 'Hello ' + req.params.id };
-    res.render('template.ejs');
+    show(req, res) {
 
-};
+        res.locals = { varTest: 'Hello ' + req.params.id };
+        res.render('template.ejs');
 
-module.exports.create = function(req, res) {
+    }
 
-};
+    create(req, res) {
 
-module.exports.update = function(req, res) {
+    }
 
-};
+    update(req, res) {
 
-module.exports.destroy = function(req, res) {
+    }
 
-};
+    destroy(req, res) {
+
+    }
+
+}
+
+module.exports = Controller;

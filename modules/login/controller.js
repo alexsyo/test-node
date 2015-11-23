@@ -1,23 +1,29 @@
 'use strict';
 
-module.exports.index = function(req, res) {
+class Controller {
 
-    res.render('login.ejs');
+    index(req, res) {
 
-};
+        res.render('login.ejs');
 
-module.exports.show = function(req, res) {
+    }
 
-};
+    show(req, res) {
 
-module.exports.create = function(req, res) {
+    }
 
-};
+    create(req, res) {
 
-module.exports.update = function(req, res) {
+    }
 
-};
+    update(req, res) {
 
-module.exports.destroy = function(req, res) {
+    }
 
-};
+    destroy(req, res) {
+
+    }
+
+}
+
+module.exports = Controller;
